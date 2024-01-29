@@ -1,2 +1,2 @@
-# modulle5-challenge
+# module5-challenge
 Word day schedule planner.
