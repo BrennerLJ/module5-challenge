@@ -6,38 +6,14 @@ $(document).ready(function () {
 });
 
 // This function displays the current date on the top of the webpage.
-window.onload = function() {
-  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];;
-  var date = new Date();
+// function displayCurrentDay() {
+//   var currentDate = moment().format("dddd, MMMM Do");
+//   $("#date").text(currentDate);
+//   console.log("current date display");
+// }
+// displayCurrentDay();
 
-  document.getElementById("date").innerHTML = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
-};
-
-$(function() {
-  var time = new time;
-  $("<textarea/>").each(function() {
-    var specifiedTime = $(this).data("time");
-    specifiedTime = Date.parse(specifiedTime);
-    if (specifiedDate == currentDate) {
-      $(this).addClass("present");      
-    } else if (currentDate > specifiedDate) {
-      $(this).addClass("past");
-    } else {
-      $(this).addClass("future");
-    }
-  });
-});
-
-function setBg() {
-  var time = specifiedTime;
-  if (specifiedTime == currentTime) {
-    $(this).addClass(".present");
-  } else if (specifiedTime > currentTime) {
-    $(this).addClass(".past");
-  } else {
-    $(this).addClass(".future");
-  }
-}
+$("#currentDay").text(dayjs().format("dddd, MMMM DD"));
 
 $(document).ready(function() {
 
