@@ -11,13 +11,16 @@ $("#currentDay").text(dayjs().format("dddd, MMMM DD"));
 //This function saves user input in the textarea to local storage.
 $(document).ready(function() {
   
-  $(".saveBtn").on("click", function() {
+  $(".btn").on("click", function() {
       event.preventDefault();
-    localStorage.setItem($(this).prop("hour-9"), $(this).prev().val());
-    console.log(localStorage.getItem($(this).prop("hour-9")));
-
+    var input = $(this).siblings(".description").val();
+    var hour = $(this).parent().attr("id");
+    localStorage.setItem(hour, input);
+    console.log(input);
   })
 })
+
+
 // This function adds the class depending on if it is the past, present, or future.
 function timeTracker() {
   var timeNow = dayjs().hour();
@@ -41,16 +44,6 @@ function timeTracker() {
   })
 }
 
-
-$("#hour-9 .time-block").val(localStorage.getItem("hour-9"));
-$("#hour-10 .time-block").val(localStorage.getItem("hour-10"));
-$("#hour-11 .time-block").val(localStorage.getItem("hour-11"));
-$("#hour-12 .time-block").val(localStorage.getItem("hour-12"));
-$("#hour-13 .time-block").val(localStorage.getItem("hour-13"));
-$("#hour-14 .time-block").val(localStorage.getItem("hour-14"));
-$("#hour-15 .time-block").val(localStorage.getItem("hour-15"));
-$("#hour-16 .time-block").val(localStorage.getItem("hour-16"));
-$("#hour-17 .time-block").val(localStorage.getItem("hour-17"));
 timeTracker();
 
 
