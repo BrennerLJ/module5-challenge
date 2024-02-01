@@ -18,31 +18,12 @@ $(document).ready(function() {
 
   })
 })
-
-$("div").addClass("past");
-$("div").addClass("present");
-$("div").addClass("future");
-
-const currentHour = dayjs().hour();
-
-$(".row time-block").each(function() {
-  const blockHour = parstInt($(this).attr("id").split("-")(1));
-
-  if (blockHour < currentHour) {
-    $(this).addClass("past");
-  } else if (blockHour === currentHour) {
-    $(this).addClass("present");
-  } else {
-    $(this).addClass("future");
-  }
-});
-
-
+// This function adds the class depending on if it is the past, present, or future.
 function timeTracker() {
-  var timeNow = moment().hour();
+  var timeNow = dayjs().hour();
 
   $(".time-block").each(function () {
-    var blockTime = parseInt($(this).attr("id").split("hour")[1]);
+    var blockTime = parseInt($(this).attr("hour").split("hour")[1]);
 
     if (blockTime < timeNow) {
       $(this).removeClass("future");
@@ -60,26 +41,18 @@ function timeTracker() {
   })
 }
 
-timeTracker();
-// document.addEventListener("DOMContentLoaded", function() {
-//   var currentHour = new Date().getHours();
 
-//   var workdayStart = ("#hour-9");
-//   var workdayEnd = ("#hour-11");
-  
-//   for (var hour = workdayStart; hour <= workdayEnd; hour++) {
-//     var timeBlock = document.createElement("div");
-//     timeBlock.textContent = hour + ":00";
-  
-//     if (hour < currentHour) {
-//       timeBlock.classList.add('past');
-//     } else if (hour === currentHour) {
-//       timeBlock.classList.add('present');
-//     } else {
-//       timeBlock.classList.add('future');
-//     }
-//   }  
-// });
+$("#hour-9 .time-block").val(localStorage.getItem("hour-9"));
+$("#hour-10 .time-block").val(localStorage.getItem("hour-10"));
+$("#hour-11 .time-block").val(localStorage.getItem("hour-11"));
+$("#hour-12 .time-block").val(localStorage.getItem("hour-12"));
+$("#hour-13 .time-block").val(localStorage.getItem("hour-13"));
+$("#hour-14 .time-block").val(localStorage.getItem("hour-14"));
+$("#hour-15 .time-block").val(localStorage.getItem("hour-15"));
+$("#hour-16 .time-block").val(localStorage.getItem("hour-16"));
+$("#hour-17 .time-block").val(localStorage.getItem("hour-17"));
+timeTracker();
+
 
 
 
