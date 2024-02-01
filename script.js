@@ -5,18 +5,12 @@ $(document).ready(function () {
     window.setTimeout("index.html_load()", 50);
 });
 
-// This function displays the current date on the top of the webpage.
-// function displayCurrentDay() {
-//   var currentDate = moment().format("dddd, MMMM Do");
-//   $("#date").text(currentDate);
-//   console.log("current date display");
-// }
-// displayCurrentDay();
-
+// This displays the current date on the top of the webpage using dayjs format.
 $("#currentDay").text(dayjs().format("dddd, MMMM DD"));
 
+//This function saves user input in the textarea to local storage.
 $(document).ready(function() {
-
+  
   $(".saveBtn").on("click", function() {
       event.preventDefault();
     localStorage.setItem($(this).prop("hour-9"), $(this).prev().val());
@@ -24,6 +18,69 @@ $(document).ready(function() {
 
   })
 })
+
+$("div").addClass("past");
+$("div").addClass("present");
+$("div").addClass("future");
+
+const currentHour = dayjs().hour();
+
+$(".row time-block").each(function() {
+  const blockHour = parstInt($(this).attr("id").split("-")(1));
+
+  if (blockHour < currentHour) {
+    $(this).addClass("past");
+  } else if (blockHour === currentHour) {
+    $(this).addClass("present");
+  } else {
+    $(this).addClass("future");
+  }
+});
+
+
+function timeTracker() {
+  var timeNow = moment().hour();
+
+  $(".time-block").each(function () {
+    var blockTime = parseInt($(this).attr("id").split("hour")[1]);
+
+    if (blockTime < timeNow) {
+      $(this).removeClass("future");
+      $(this).removeClass("present");
+      $(this).addClass("past");
+    } else if (blockTime > timeNow) {
+      $(this).removeClass("past");
+      $(this).removeClass("future");
+      $(this).addClass("present");
+    } else {
+      $(this).removeClass("present");
+      $(this).removeClass("past");
+      $(this).addClass("future");
+    }
+  })
+}
+
+timeTracker();
+// document.addEventListener("DOMContentLoaded", function() {
+//   var currentHour = new Date().getHours();
+
+//   var workdayStart = ("#hour-9");
+//   var workdayEnd = ("#hour-11");
+  
+//   for (var hour = workdayStart; hour <= workdayEnd; hour++) {
+//     var timeBlock = document.createElement("div");
+//     timeBlock.textContent = hour + ":00";
+  
+//     if (hour < currentHour) {
+//       timeBlock.classList.add('past');
+//     } else if (hour === currentHour) {
+//       timeBlock.classList.add('present');
+//     } else {
+//       timeBlock.classList.add('future');
+//     }
+//   }  
+// });
+
 
 
 
